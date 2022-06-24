@@ -23,6 +23,8 @@ API do nosso Inventário na Versão 2.0
         - [takeAditionalItem](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#takeaditionalitem)
         - [setAditionalMaxWeight](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#setaditionalmaxweight)
         - [isAditionalReciveWeight](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#isaditionalreciveitem)
+        - [getAditionalActualWeight](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getaditionalactualweight)
+        - [updateAditionalInventory](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#updateaditionalinventory)
 
 
 # Player API
@@ -414,5 +416,106 @@ addCommandHandler ("setaweight", function (playerElement, commandExecute, aditio
         local setWeight = inventory:setAditionalMaxWeight (aditionalElement, aditionalData, newWeight, withOld)
         print (setWeight)
     end
+end)
+```
+
+## **isAditionalReciveWeight**
+- **Argumentos Obrigatórios:**
+    - [element](https://wiki.multitheftauto.com/wiki/Element) `aditionalElement`: Elemento do Adicional.
+    - [string](https://wiki.multitheftauto.com/wiki/String) `aditionalData`: Data do Adicional.
+    - [string](https://wiki.multitheftauto.com/wiki/String) `itemCheck`: Item desejado a Verificar.
+    - [int](https://wiki.multitheftauto.com/wiki/Int) `itemAmount`: Quantidade do item desejado a Verificar.
+
+- **Retorno da Função:**
+    - [bool](https://wiki.multitheftauto.com/wiki/Boolean): Retorna *true* caso o Adicional possa receber aquela quantidade do Item, *falso* a ação contrária.
+
+Syntax
+
+```Lua
+bool isAditionalReciveWeight (aditionalElement, aditionalData, itemCheck, itemAmount)
+```
+
+Exemplo
+
+```Lua
+local inventory = exports["mistic_inventory_v2"]
+
+addCommandHandler ("isaitem", function (playerElement, commandExecute, aditionalData, itemCheck, itemAmount)
+    local aditionalElement = getAditionalElementFromData (aditionalData)
+    if aditionalElement then
+        local isRecive = inventory:setAditionalMaxWeight (aditionalElement, aditionalData, itemCheck, itemAmount)
+        print (isRecive)
+    end
+end)
+```
+
+## **getAditionalActualWeight**
+- **Argumentos Obrigatórios:**
+    - [element](https://wiki.multitheftauto.com/wiki/Element) `aditionalElement`: Elemento do Adicional.
+    - [string](https://wiki.multitheftauto.com/wiki/String) `aditionalData`: Data do Adicional.
+
+- **Retorno da Função:**
+    - [int](https://wiki.multitheftauto.com/wiki/Int): Retorna o *peso* do Inventário do Aditional.
+
+Syntax
+
+```Lua
+int getAditionalActualWeight (aditionalElement, aditionalData)
+```
+
+Exemplo
+
+```Lua
+local inventory = exports["mistic_inventory_v2"]
+
+addCommandHandler ("getaweight", function (playerElement, commandExecute, aditionalData)
+    local aditionalElement = getAditionalElementFromData (aditionalData)
+    if aditionalElement then
+        local myWeight = inventory:getAditionalActualWeight (aditionalElement, aditionalData)
+        print (myWeight)
+    end
+end)
+```
+
+## **updateAditionalInventory**
+- **Argumentos Obrigatórios:**
+    - [element](https://wiki.multitheftauto.com/wiki/Element) `aditionalElement`: Elemento do Adicional.
+    - [string](https://wiki.multitheftauto.com/wiki/String) `aditionalData`: Data do Adicional.
+
+- **Retorno da Função:**
+    - [bool](https://wiki.multitheftauto.com/wiki/Boolean): Retorna *true* caso o Inventário do Jogador tenha sido atualizado para o `client - side`, *falso* a ação contrária.
+
+Syntax
+
+```Lua
+bool updateAditionalInventory (aditionalElement, aditionalData)
+```
+
+Exemplo 1
+
+```Lua
+local inventory = exports["mistic_inventory_v2"]
+
+addCommandHandler ("updateainv", function (playerElement, commandExecute, aditionalData)
+    local aditionalElement = getAditionalElementFromData (aditionalData)
+    if aditionalElement then
+        local updateInv = inventory:updateAditionalInventory (aditionalElement, aditionalData)
+        print (updateInv)
+    end
+end)
+```
+
+Exemplo 2
+
+```Lua
+-- client - side
+
+addEventHandler ("mistic_inventory:updatePlayerInventory", getRootElement (), function (typeUpdate, elementInventory, tableInventory)
+    --[[
+        typeUpdate: Tipo do Update ("player" ou "adicional");
+        elementInventory: Elemento para Atualizar (tem que ser o mesmo do inventário, ex : Inventário aberto pelo Jogador `Thigas`, elementInventory = `Thigas`);
+        tableInventory: Tabela do Inventário do Jogador (tem que conter todas as informações do Inventário);
+    ]]
+    print ("Inventário Atualizado.")
 end)
 ```
