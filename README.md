@@ -12,7 +12,8 @@ API do nosso Inventário na Versão 2.0
         - [isPlayerReciveItem](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#isplayerreciveitem)
         - [setPlayerMaxWeight](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#setplayermaxweight)
         - [updatePlayerInventory](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#updateplayerinventory)
-        - [getPlayerActualWeight](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getPlayerActualWeight)
+        - [getPlayerActualWeight](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getplayeractualweight)
+        - [getPlayerInventoryData](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getplayerinventorydata)
 
 # Player API
 
@@ -239,5 +240,29 @@ local inventory = exports["mistic_inventory_v2"]
 addCommandHandler ("getweight", function (playerElement, commandExecute)
     local myWeight = inventory:getPlayerActualWeight (playerElement)
     print (myWeight)
+end)
+```
+
+# **getPlayerInventoryData**
+- **Argumentos Obrigatórios:**
+    - [element](https://wiki.multitheftauto.com/wiki/Element) `playerElement`: Elemento do Jogador.
+
+- **Retorno da Função:**
+    - [table](https://wiki.multitheftauto.com/wiki/Table): Retorna a *tabela* do Inventário do Jogador.
+
+Syntax
+
+```Lua
+table getPlayerInventoryData (playerElement)
+```
+
+Exemplo
+
+```Lua
+local inventory = exports["mistic_inventory_v2"]
+
+addCommandHandler ("getinv", function (playerElement, commandExecute)
+    local playerItens = inventory:getPlayerInventoryData (playerElement)
+    iprint (playerItens, playerItens.itensData, playerItens.informationsData)
 end)
 ```
