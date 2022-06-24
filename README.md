@@ -19,6 +19,8 @@ API do nosso Inventário na Versão 2.0
     - [Funções : server - side](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#fun%C3%A7%C3%B5es-do-lado-server---side-1)
         - [getAditionalElementFromData](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getaditionalelementfromdata)
         - [getAditionalItem](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getaditionalitem)
+        - [giveAditionalItem](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#giveaditionalitem)
+        - [takeAditionalItem](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#takeaditionalitem)
 
 
 # Player API
@@ -319,6 +321,67 @@ addCommandHandler ("getaitem", function (playerElement, commandExecute, aditiona
     if aditionalElement then
         local haveItem, amountItem, indexItem = inventory:getAditionalItem (aditionalElement, aditionalData, itemCheck)
         print (haveItem, amountItem, indexItem)
+    end
+end)
+```
+
+## **giveAditionalItem**
+- **Argumentos Obrigatórios:**
+    - [element](https://wiki.multitheftauto.com/wiki/Element) `aditionalElement`: Elemento do Adicional.
+    - [string](https://wiki.multitheftauto.com/wiki/String) `aditionalData`: Data do Adicional.
+    - [string](https://wiki.multitheftauto.com/wiki/String) `itemGive`: Item desejado a Givar.
+    - [int](https://wiki.multitheftauto.com/wiki/Int) `itemAmount`: Quantidade desejada a Givar.
+
+- **Retorno da Função:**
+    - [bool](https://wiki.multitheftauto.com/wiki/Boolean): Retorna *true* caso o Adicional receba o Item, *falso* a ação contrária.
+
+Syntax
+
+```Lua
+bool, int, int giveAditionalItem (aditionalElement, aditionalData, itemGive, itemAmount)
+```
+
+Exemplo
+
+```Lua
+local inventory = exports["mistic_inventory_v2"]
+
+addCommandHandler ("giveaitem", function (playerElement, commandExecute, aditionalData, itemGive, itemAmount)
+    local aditionalElement = getAditionalElementFromData (aditionalData)
+    if aditionalElement then
+        local giveItem = inventory:giveAditionalItem (aditionalElement, aditionalData, itemGive, itemAmount)
+        print (giveItem)
+    end
+end)
+```
+
+
+## **takeAditionalItem**
+- **Argumentos Obrigatórios:**
+    - [element](https://wiki.multitheftauto.com/wiki/Element) `aditionalElement`: Elemento do Adicional.
+    - [string](https://wiki.multitheftauto.com/wiki/String) `aditionalData`: Data do Adicional.
+    - [string](https://wiki.multitheftauto.com/wiki/String) `itemTake`: Item desejado a Remover.
+    - [int](https://wiki.multitheftauto.com/wiki/Int) `itemAmount`: Quantidade desejada a Remover.
+
+- **Retorno da Função:**
+    - [bool](https://wiki.multitheftauto.com/wiki/Boolean): Retorna *true* caso o Item seja removido do Adicional, *falso* a ação contrária.
+
+Syntax
+
+```Lua
+bool, int, int takeAditionalItem (aditionalElement, aditionalData, itemTake, itemAmount)
+```
+
+Exemplo
+
+```Lua
+local inventory = exports["mistic_inventory_v2"]
+
+addCommandHandler ("takeaitem", function (playerElement, commandExecute, aditionalData, itemTake, itemAmount)
+    local aditionalElement = getAditionalElementFromData (aditionalData)
+    if aditionalElement then
+        local takeItem = inventory:takeAditionalItem (aditionalElement, aditionalData, itemTake, itemAmount)
+        print (takeItem)
     end
 end)
 ```
