@@ -231,7 +231,7 @@ Syntax
 int getPlayerActualWeight (playerElement)
 ```
 
-Exemplo 1
+Exemplo
 
 ```Lua
 local inventory = exports["mistic_inventory_v2"]
