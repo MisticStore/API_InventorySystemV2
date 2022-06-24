@@ -15,6 +15,12 @@ API do nosso Inventário na Versão 2.0
         - [getPlayerActualWeight](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getplayeractualweight)
         - [getPlayerInventoryData](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getplayerinventorydata)
 
+- [Aditional API](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#aditional-api)
+    - [Funções : server - side](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#fun%C3%A7%C3%B5es-do-lado-server---side-1)
+        - [getAditionalElementFromData](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getaditionalelementfromdata)
+        - [getAditionalItem](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getaditionalitem)
+
+
 # Player API
 
 ## Funções do lado `server - side`
@@ -264,5 +270,55 @@ local inventory = exports["mistic_inventory_v2"]
 addCommandHandler ("getinv", function (playerElement, commandExecute)
     local playerItens = inventory:getPlayerInventoryData (playerElement)
     iprint (playerItens, playerItens.itensData, playerItens.informationsData)
+end)
+```
+
+# Aditional API
+
+## Funções do lado `server - side`
+
+## **getAditionalElementFromData**
+
+```Lua
+function getAditionalElementFromData (nameAditional)
+    local tableAditional = getElementsByType ("objects")
+    if tableAditional and #tableAditional ~= 0 then
+        local aditionalElement = tableAditional[i]
+        if aditionalElement and isElement (aditionalElement) and getElementData (aditionalElement, "mistic_inventory:thisInventoryObject") and getElementData (aditionalElement, "mistic_inventory:thisInventoryObject").identify == nameAditional then
+            return aditionalElement
+        end
+    end
+    return false
+end
+```
+
+## **getAditionalItem**
+- **Argumentos Obrigatórios:**
+    - [element](https://wiki.multitheftauto.com/wiki/Element) `aditionalElement`: Elemento do Adicional.
+    - [string](https://wiki.multitheftauto.com/wiki/String) `aditionalData`: Data do Adicional.
+    - [string](https://wiki.multitheftauto.com/wiki/String) `itemCheck`: Item desejado a Checar.
+
+- **Retorno da Função:**
+    - [bool](https://wiki.multitheftauto.com/wiki/Boolean) `haveItem`: Retorna *true* caso o Adicional possua o Item, *falso* a ação contrária.
+    - [int](https://wiki.multitheftauto.com/wiki/Int) `amountItem`: Retorna a *quantidade* do Item que o Adicional possui.
+    - [int](https://wiki.multitheftauto.com/wiki/Int) `indexItem`: Retorna a *posição / index* do Item na tabela de Itens do Adicional.
+
+Syntax
+
+```Lua
+bool, int, int getAditionalItem (aditionalElement, aditionalData, itemCheck)
+```
+
+Exemplo
+
+```Lua
+local inventory = exports["mistic_inventory_v2"]
+
+addCommandHandler ("getaitem", function (playerElement, commandExecute, aditionalData, itemCheck)
+    local aditionalElement = getAditionalElementFromData (aditionalData)
+    if aditionalElement then
+        local haveItem, amountItem, indexItem = inventory:getAditionalItem (aditionalElement, aditionalData, itemCheck)
+        print (haveItem, amountItem, indexItem)
+    end
 end)
 ```
