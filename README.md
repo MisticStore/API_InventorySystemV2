@@ -21,6 +21,8 @@ API do nosso Inventário na Versão 2.0
         - [getAditionalItem](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getaditionalitem)
         - [giveAditionalItem](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#giveaditionalitem)
         - [takeAditionalItem](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#takeaditionalitem)
+        - [setAditionalMaxWeight](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#setaditionalmaxweight)
+        - [isAditionalReciveWeight](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#isaditionalreciveitem)
 
 
 # Player API
@@ -355,7 +357,6 @@ addCommandHandler ("giveaitem", function (playerElement, commandExecute, adition
 end)
 ```
 
-
 ## **takeAditionalItem**
 - **Argumentos Obrigatórios:**
     - [element](https://wiki.multitheftauto.com/wiki/Element) `aditionalElement`: Elemento do Adicional.
@@ -382,6 +383,36 @@ addCommandHandler ("takeaitem", function (playerElement, commandExecute, adition
     if aditionalElement then
         local takeItem = inventory:takeAditionalItem (aditionalElement, aditionalData, itemTake, itemAmount)
         print (takeItem)
+    end
+end)
+```
+
+## **setAditionalMaxWeight**
+- **Argumentos Obrigatórios:**
+    - [element](https://wiki.multitheftauto.com/wiki/Element) `aditionalElement`: Elemento do Adicional.
+    - [string](https://wiki.multitheftauto.com/wiki/String) `aditionalData`: Data do Adicional.
+    - [int](https://wiki.multitheftauto.com/wiki/Int) `newWeight`: Peso desejado a Adicionar.
+    - [bool](https://wiki.multitheftauto.com/wiki/Boolean) `withOld`: Se vai somar com o peso antigo ou não.
+
+- **Retorno da Função:**
+    - [bool](https://wiki.multitheftauto.com/wiki/Boolean): Retorna *true* caso o Adicional tenha o Peso Máximo do inventário alterado, *falso* a ação contrária.
+
+Syntax
+
+```Lua
+bool setAditionalMaxWeight (aditionalElement, aditionalData, newWeight, withOld)
+```
+
+Exemplo
+
+```Lua
+local inventory = exports["mistic_inventory_v2"]
+
+addCommandHandler ("setaweight", function (playerElement, commandExecute, aditionalData, newWeight, withOld)
+    local aditionalElement = getAditionalElementFromData (aditionalData)
+    if aditionalElement then
+        local setWeight = inventory:setAditionalMaxWeight (aditionalElement, aditionalData, newWeight, withOld)
+        print (setWeight)
     end
 end)
 ```
