@@ -16,8 +16,9 @@ API do nosso Inventário na Versão 2.0
         - [getPlayerInventoryData](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getplayerinventorydata)
 
 - [Aditional API](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#aditional-api)
-    - [Funções : server - side](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#fun%C3%A7%C3%B5es-do-lado-server---side-1)
+    - [Funções Úteis](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#fun%C3%A7%C3%B5es-%C3%BAteis)
         - [getAditionalElementFromData](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getaditionalelementfromdata)
+    - [Funções : server - side](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#fun%C3%A7%C3%B5es-do-lado-server---side-1)
         - [getAditionalItem](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#getaditionalitem)
         - [giveAditionalItem](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#giveaditionalitem)
         - [takeAditionalItem](https://github.com/MisticStore/API_InventorySystemV2/edit/main/README.md#takeaditionalitem)
@@ -281,7 +282,7 @@ end)
 
 # Aditional API
 
-## Funções do lado `server - side`
+## Funções Úteis
 
 ## **getAditionalElementFromData**
 
@@ -297,6 +298,8 @@ function getAditionalElementFromData (nameAditional)
     return false
 end
 ```
+
+## Funções do lado `server - side`
 
 ## **getAditionalItem**
 - **Argumentos Obrigatórios:**
