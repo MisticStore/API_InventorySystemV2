@@ -60,7 +60,7 @@ Exemplo
 local inventory = exports["mistic_inventory_v2"]
 
 addCommandHandler ("giveitem", function (playerElement, commandExecute, itemGive, itemAmount)
-    local giveItem = inventory:getPlayerItem (playerElement, itemGive, itemAmount)
+    local giveItem = inventory:givePlayerItem (playerElement, itemGive, itemAmount)
     print (giveItem)
 end)
 ```
@@ -68,16 +68,16 @@ end)
 # **takePlayerItem**
 - **Argumentos Obrigatórios:**
     - [element](https://wiki.multitheftauto.com/wiki/Element) `playerElement`: Elemento do Jogador.
-    - [string](https://wiki.multitheftauto.com/wiki/String) `itemGive`: Item desejado a Givar.
-    - [int](https://wiki.multitheftauto.com/wiki/Int) `itemAmount`: Quantidade que deseja Givar.
+    - [string](https://wiki.multitheftauto.com/wiki/String) `itemTake`: Item desejado a Retirar.
+    - [int](https://wiki.multitheftauto.com/wiki/Int) `itemAmount`: Quantidade que deseja Retirar.
 
 - **Retorno da Função:**
-    - [bool](https://wiki.multitheftauto.com/wiki/Boolean): Retorna *true* caso o Jogador recebeu o Item, *falso* a ação contrária.
+    - [bool](https://wiki.multitheftauto.com/wiki/Boolean): Retorna *true* caso o Item foi removido do Jogador, *falso* a ação contrária.
 
 Syntax
 
 ```Lua
-bool givePlayerItem (playerElement, itemGive, itemAmount)
+bool takePlayerItem (playerElement, itemTake, itemAmount)
 ```
 
 Exemplo
@@ -85,8 +85,8 @@ Exemplo
 ```Lua
 local inventory = exports["mistic_inventory_v2"]
 
-addCommandHandler ("giveitem", function (playerElement, commandExecute, itemGive, itemAmount)
-    local giveItem = inventory:getPlayerItem (playerElement, itemGive, itemAmount)
-    print (giveItem)
+addCommandHandler ("takeitem", function (playerElement, commandExecute, itemTake, itemAmount)
+    local takeItem = inventory:takePlayerItem (playerElement, itemTake, itemAmount)
+    print (takeItem)
 end)
 ```
